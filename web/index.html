@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Monitor JT808</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Monitor JT808">
+          <span class="brand-mark">J</span>
+          <span>Guix <strong>Monitor</strong></span>
+        </a>
+        <span id="connection-status" class="status-pill" data-state="connecting">
+          <span class="status-dot"></span>
+          <span id="connection-label">Conectando ao painel</span>
+        </span>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">SERVIDOR DE TESTE</p>
+        <h1>Monitor JT808</h1>
+        <p class="intro-copy">
+          Monitoramento JT808 e publicação automática dos canais RTSP para o OBS.
+        </p>
+      </section>
+
+      <section class="metrics" aria-label="Resumo do listener">
+        <article class="metric-card">
+          <span class="metric-label">Terminais online</span>
+          <strong id="online-count" class="metric-value">—</strong>
+          <span class="metric-note">Conexões TCP ativas</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Terminais identificados</span>
+          <strong id="terminal-count" class="metric-value">—</strong>
+          <span class="metric-note">Receberam registro JT808</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Listener</span>
+          <strong id="listener-address" class="metric-value metric-address">—</strong>
+          <span class="metric-note">TCP · porta publicada no PC</span>
+        </article>
+      </section>
+
+      <section class="panel obs-panel" aria-label="Controle do OBS">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">TRANSMISSÃO</p>
+            <h2>Cenas disponíveis no OBS</h2>
+          </div>
+          <span id="obs-connection" class="status-pill" data-state="disabled">
+            <span class="status-dot"></span>
+            <span id="obs-connection-label">OBS não configurado</span>
+          </span>
+        </div>
+        <div id="obs-scenes" class="obs-scenes" aria-live="polite">
+          <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">⛶</span>
+            <strong>Integração não configurada</strong>
+            <span>Defina OBS_WEBSOCKET_URL no servidor para trocar a cena do OBS por aqui.</span>
+          </div>
+        </div>
+        <span id="obs-scene-status" class="obs-scene-status" data-state=""></span>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel terminal-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">DISPOSITIVOS</p>
+              <h2>Terminais</h2>
+            </div>
+            <span id="terminal-count-label" class="count-badge">0</span>
+          </div>
+          <div id="terminal-list" class="terminal-list" aria-live="polite">
+            <div class="empty-state">
+              <span class="empty-icon" aria-hidden="true">⌁</span>
+              <strong>Aguardando terminal</strong>
+              <span>Quando a câmera enviar JT808, os dados aparecerão aqui.</span>
+            </div>
+          </div>
+          <div class="rtsp-callout">
+            <div>
+              <strong>RTSP para OBS</strong>
+              <p id="media-summary">Os canais 1 e 2 serão publicados automaticamente quando a câmera se conectar.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel events-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">TEMPO REAL</p>
+              <h2>Atividade recente</h2>
+            </div>
+            <span class="live-label"><span></span> AO VIVO</span>
+          </div>
+          <ol id="event-list" class="event-list" aria-live="polite">
+            <li class="event-empty">Aguardando mensagens JT808…</li>
+          </ol>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <span>Monitor local · informações em memória</span>
+        <span id="last-update">Aguardando atualização</span>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+logLevel: info
+
+rtsp: true
+rtspAddress: :8554
+rtspTransports: [tcp]
+readTimeout: 120s
+rtmp: true
+rtmpAddress: :1935
+hls: true
+hlsAddress: :8888
+hlsVariant: mpegts
+hlsSegmentDuration: 1s
+webrtc: false
+srt: false
+moq: false
+
+paths:
+  obs:
+    source: publisher
+  all_others:
+    source: publisher
